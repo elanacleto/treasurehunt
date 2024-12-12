@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Treasure Hunt</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 2em;
+  }
+  label, input {
+    font-size: 1.2em;
+  }
+  #answerSection, #answersList {
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  #answersList {
+    display: none;
+  }
+  button {
+    margin-top: 1em;
+    font-size: 1em;
+  }
+  img {
+    margin-top: 1em;
+    max-width: 300px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<h1>Treasure Hunt</h1>
+<p>What is the place you're headed to?</p>
+<input type="text" id="userInput" placeholder="Enter the place here..." />
+<button id="checkButton">Check</button>
+
+<div id="answerSection"></div>
+
+<button id="showAnswersButton">SHOW ANSWERS FOR TREASURE HUNT</button>
+<div id="answersList">
+  1. LA FACTORY<br>
+  2. Le petit Souk<br>
+  3. Cache Cache
+</div>
+
+<script>
+  const checkButton = document.getElementById('checkButton');
+  const userInput = document.getElementById('userInput');
+  const answerSection = document.getElementById('answerSection');
+  const showAnswersButton = document.getElementById('showAnswersButton');
+  const answersList = document.getElementById('answersList');
+
+  const validAnswers = ["cache cache", "cachecache", "cache-cache"];
+
+  checkButton.addEventListener('click', function() {
+    const input = userInput.value.trim().toLowerCase();
+    answerSection.innerHTML = '';
+    if (validAnswers.includes(input)) {
+      // Display the image if correct
+      const img = document.createElement('img');
+      img.src = 'cachecache.png'; // Replace with your actual image file name or URL
+      img.alt = 'Treasure Found!';
+      answerSection.appendChild(img);
+    } else {
+      // Otherwise show Try again!
+      answerSection.textContent = 'Try again!';
+    }
+  });
+
+  showAnswersButton.addEventListener('click', function() {
+    answersList.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
